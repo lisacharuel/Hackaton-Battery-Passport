@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Passport - Hackathon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🔋 Battery Passport - Workflow Démo</h1>
+    </header>
+
+    <div class="container">
+        <div id="battery-info" class="card">
+            <h2>Données du Battery Passport</h2>
+            <input type="text" id="scan-input" placeholder="Scanner/Entrer serialNumber (ex: BAT-EV-0001)">
+            <button onclick="fetchBatteryData()">Charger / Scanner</button>
+            <div id="data-display">
+                <p>Aucune donnée chargée.</p>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tablink active" onclick="openRole(event, 'Garagiste')">Garagiste</button>
+            <button class="tablink" onclick="openRole(event, 'Proprietaire')">Propriétaire BP</button>
+            <button class="tablink" onclick="openRole(event, 'CentreTri')">Centre de Tri</button>
+        </div>
+
+        <div id="Garagiste" class="tabcontent" style="display:block">
+            <h3>Rôle : Garagiste (ACT-GARAGE)</h3>
+            <p>Diagnostique la batterie (via le serialNumber scanné ci-dessus) et demande le statut 'waste'.</p>
+            <button id="declare-waste-btn" onclick="declareWaste()" disabled>
+                Déclarer la batterie Hors d'Usage
+            </button>
+        </div>
+
+        <div id="Proprietaire" class="tabcontent">
+            <h3>Rôle : Propriétaire BP (OP-Renault)</h3>
+            <p>Valide la demande de changement de statut pour le passeport **BP-EV-0001**.</p>
+            <button id="validate-waste-btn" onclick="validateWaste()">
+                Valider Statut (Original -> Waste)
+            </button>
+        </div>
+
+        <div id="CentreTri" class="tabcontent">
+            <h3>Rôle : Centre de Tri (ACT-SORT)</h3>
+            <p>Réceptionne la batterie (via le serialNumber scanné) et met à jour sa localisation physique.</p>
+            <button id="receive-btn" onclick="receiveBattery()" disabled>
+                Confirmer la Réception
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

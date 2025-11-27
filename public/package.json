@@ -1,0 +1,14 @@
+{
+  "name": "hackathon-battery-passport",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "express": "^4.21.2",
+    "neo4j-driver": "^5.28.2"
+  }
+}

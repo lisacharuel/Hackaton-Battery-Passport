@@ -1,0 +1,11 @@
+serialNumber,operator,manufacturingPlace,manufacturingDate,commissioningDate,warrantyDurationYears,batteryCategory,massKg,status,recyclingSymbol,wastePreventionInfo,initialCapacitykWh,chemicalComposition,expectedLifetimeCycles,capacityFadePercent,stateOfHealthPercent,originalPowerkW,minVoltageV,nominalVoltageV,maxVoltageV,fullCycles
+BAT-EV-0001,Renault,Flins (FR),2021-03-01,2021-09-01,8,EV,420,original,recycle,"Ne pas jeter, depot en point de collecte agree",52,LFP,3000,8,92,110,250,350,420,780
+BAT-EV-0002,Tesla,Fremont (US),2020-11-01,2021-02-01,8,EV,480,repurposed,recycle,"Contient lithium et nickel",75,NCA,1500,18,85,220,300,360,410,900
+BAT-LMT-0003,Decathlon,Taiwan,2022-05-01,2022-06-01,2,LMT,3.2,reused,recycle,"Recyclage obligatoire",0.45,NMC,700,14,88,0.6,36,48,54,300
+BAT-EV-0004,BYD,Shenzhen (CN),2023-08-01,2024-01-01,8,EV,360,original,recycle,"Tri specifique batteries HT",60,Blade LFP,3500,3,97,150,300,350,400,120
+BAT-EV-0005,Peugeot,Sochaux (FR),2019-07-01,2019-11-01,7,EV,390,waste,waste,"Danger : pack endommage",50,NMC,1000,35,70,100,280,330,380,1500
+BAT-IND-0006,Siemens,Hambourg (DE),2018-10-01,2019-03-01,10,Industrial,720,remanufactured,recycle,"Materiel lourd, gestion industrielle",120,LFP,2500,10,90,350,600,650,700,1900
+BAT-EV-0007,Volkswagen,Zwickau (DE),2020-02-01,2020-07-01,8,EV,410,repurposed,recycle,"Batterie reemployable",55,NMC,1200,17,83,160,300,360,400,1100
+BAT-LMT-0008,Xiaomi,Shenzhen (CN),2023-01-01,2023-02-01,2,LMT,2.5,original,recycle,"Jeter en point de collecte",0.4,LCO,500,6,94,0.5,33,42,50,120
+BAT-EV-0009,Hyundai,Ulsan (KR),2021-04-01,2021-10-01,8,EV,380,reused,recycle,"Fin de vie vehicule, potentiel 2nd life",64,NCM811,1800,7,93,200,350,400,450,950
+BAT-EV-0010,Mercedes,Stuttgart (DE),2022-09-01,2023-01-01,8,EV,450,original,recycle,"Batterie haute performance",90,NCA,1600,4,96,250,350,400,450,320
