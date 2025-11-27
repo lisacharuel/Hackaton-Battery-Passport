@@ -70,15 +70,15 @@ async function fetchBatteryData() {
         }
 
         // Générer événements fallback si nécessaire
-        if (!data.events) {
-            const events = [];
-            if (data.passport?.currentStatus === 'WASTE') {
-                events.push({ ts: data.passport.wasteTimestamp || 'inconnu', desc: 'Garagiste déclare la batterie hors usage' });
-                events.push({ ts: data.passport.validationTimestamp || 'inconnu', desc: 'Propriétaire valide le statut WASTE' });
-                events.push({ ts: data.passport.receiveTimestamp || 'inconnu', desc: 'Centre de tri reçoit la batterie' });
-            }
-            data.events = events;
-        }
+        // if (!data.events) {
+        //     const events = [];
+        //     if (data.passport?.currentStatus === 'WASTE') {
+        //         events.push({ ts: data.passport.wasteTimestamp || 'Retour Garagiste', desc: 'Garagiste déclare la batterie hors usage' });
+        //         events.push({ ts: data.passport.validationTimestamp || 'Retour Propriétaire', desc: 'Propriétaire valide le statut WASTE' });
+        //         events.push({ ts: data.passport.receiveTimestamp || 'Statut Batterie', desc: 'Centre de tri reçoit la batterie' });
+        //     }
+        //     data.events = events;
+        // }
 
         renderBatteryData(data);
     } catch (err) {
@@ -87,6 +87,14 @@ async function fetchBatteryData() {
         currentBattery = null;
     }
 }
+
+function pushEvent(desc) {
+    if (!currentBattery.events) currentBattery.events = [];
+    const ts = new Date().toISOString();
+    currentBattery.events.push({ ts, desc });
+    renderBatteryData(currentBattery); // Rafraîchit uniquement la fiche
+}
+
 
 
 function disableAllButtons() {
@@ -234,18 +242,24 @@ function declareWaste() {
     })
     .then(res => res.json())
     .then(data => {
+        // Mettre à jour le statut local pour activer le bouton du propriétaire
+        if (currentBattery && currentBattery.passport) {
+            currentBattery.passport.currentStatus = "WASTE_REQUESTED";
+        }
+
+        pushEvent(description);
         alert("Déclaration hors usage envoyée !");
-        fetchBatteryData();
+        // fetchBatteryData(); // facultatif
     })
     .catch(err => console.error("Erreur declareWaste:", err));
 }
 
-// ----------------- PROPRIETAIRE BP -----------------
 function validateWaste() {
     const serialNumber = document.getElementById("scan-input").value.trim();
     if (!serialNumber) return alert("Scanner la batterie d'abord !");
 
     const ownerId = "OP-Renault";
+    const description = "Propriétaire valide le statut WASTE";
 
     fetch('/api/owner/validate-waste', {
         method: 'POST',
@@ -254,12 +268,17 @@ function validateWaste() {
     })
     .then(res => res.json())
     .then(data => {
+        // Mettre à jour le statut local pour activer le bouton du centre de tri
+        if (currentBattery && currentBattery.passport) {
+            currentBattery.passport.currentStatus = "WASTE";
+        }
+
+        pushEvent(description);
         alert("Statut validé !");
-        fetchBatteryData();
+        // fetchBatteryData(); // facultatif si tu veux rafraîchir autres infos
     });
 }
 
-// ----------------- CENTRE DE TRI -----------------
 function receiveBattery() {
     const passportID = document.getElementById("scan-input").value.trim();
     if (!passportID) return alert("Scanner la batterie d'abord !");
@@ -267,20 +286,21 @@ function receiveBattery() {
     const centerId = "ACT-SORT";
     const eventID = "evt-" + Date.now();
     const timestamp = new Date().toISOString();
-    const locationDescription = "Batterie reçue au centre de tri";
+    const description = "Centre de tri reçoit la batterie";
 
     fetch('/api/triage/receive-battery', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ passportID, centerId, eventID, timestamp, locationDescription })
+        body: JSON.stringify({ passportID, centerId, eventID, timestamp, locationDescription: description })
     })
     .then(res => res.json())
     .then(data => {
+        pushEvent(description);
         alert("Réception confirmée au centre de tri !");
-        fetchBatteryData();
     })
     .catch(err => console.error("Erreur receiveBattery:", err));
 }
+
 
 // ----------------- GESTION DES TABS -----------------
 function openRole(evt, roleName) {

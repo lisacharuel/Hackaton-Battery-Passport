@@ -29,3 +29,23 @@ BAT-EV-0027,Volkswagen,Zwickau (DE),2021-03-01,2021-08-01,8,EV,425,repurposed,re
 BAT-LMT-0028,Xiaomi,Shenzhen (CN),2023-04-01,2023-05-01,2,LMT,2.55,original,recycle,"Jeter en point de collecte",0.41,LCO,510,8,94,0.5,33,44,52,128
 BAT-EV-0029,Hyundai,Ulsan (KR),2021-06-01,2021-12-01,8,EV,385,reused,recycle,"Fin de vie vehicule",66,NCM811,1900,9,93,215,365,415,460,970
 BAT-EV-0030,Mercedes,Stuttgart (DE),2022-10-01,2023-03-01,8,EV,460,original,recycle,"Batterie haute performance",93,NCA,1700,7,97,260,360,415,465,330
+BAT-EV-0031,Tesla,Fremont (US),2020-02-01,2020-08-01,8,EV,400,original,recycle,"Pack fonctionnel",85,NCA,1300,15,90,200,350,400,450,1200
+BAT-EV-0032,Renault,Flins (FR),2019-05-01,2019-11-01,7,EV,390,reused,recycle,"Pack usagé",70,NMC,1250,14,88,180,320,370,420,1150
+BAT-EV-0033,BMW,Leipzig (DE),2021-01-01,2021-06-01,8,EV,410,repurposed,recycle,"Batterie reconditionnée",75,NCA,1350,12,89,190,330,380,430,1250
+BAT-EV-0034,Nissan,Kyushu (JP),2020-07-01,2021-01-01,7,EV,380,original,recycle,"Pack fonctionnel",80,NMC,1200,13,87,175,310,365,415,1100
+BAT-EV-0035,Kia,Hwaseong (KR),2021-03-01,2021-09-01,8,EV,395,reused,recycle,"Fin de vie vehicule",68,NCM811,1400,11,92,185,325,375,425,1180
+BAT-EV-0036,Audi,Ingolstadt (DE),2022-02-01,2022-08-01,8,EV,420,original,recycle,"Batterie haute performance",90,NMC,1450,10,95,210,340,390,440,1300
+BAT-EV-0037,Peugeot,Sochaux (FR),2019-09-01,2020-03-01,7,EV,385,reused,recycle,"Pack usagé",72,NMC,1280,12,89,180,310,360,410,1120
+BAT-EV-0038,Volkswagen,Emden (DE),2021-05-01,2021-11-01,8,EV,405,repurposed,recycle,"Batterie réutilisable",78,NMC,1320,13,91,195,335,385,435,1240
+BAT-EV-0039,Mercedes,Düsseldorf (DE),2022-06-01,2022-12-01,8,EV,450,original,recycle,"Pack haute performance",92,NCA,1500,9,96,230,360,410,460,1350
+BAT-EV-0040,Hyundai,Ulsan (KR),2020-10-01,2021-04-01,8,EV,390,reused,recycle,"Fin de vie véhicule",70,NCM811,1380,10,90,190,320,370,420,1200
+BAT-EV-0041,Tesla,Fremont (US),2021-03-01,2021-09-01,8,EV,415,repurposed,recycle,"Pack reconditionné",82,NCA,1420,11,93,205,340,395,445,1280
+BAT-EV-0042,Rivian,Normal (US),2022-01-01,2022-07-01,8,EV,400,original,recycle,"Batterie opérationnelle",88,NMC,1360,10,94,200,335,390,440,1250
+BAT-EV-0043,Renault,Billancourt (FR),2019-11-01,2020-05-01,7,EV,380,reused,recycle,"Pack usagé",69,NMC,1220,13,87,175,310,360,410,1100
+BAT-EV-0044,BMW,Munich (DE),2020-08-01,2021-02-01,8,EV,425,original,recycle,"Pack haute performance",90,NCA,1480,12,95,215,350,400,450,1300
+BAT-EV-0045,Nissan,Zama (JP),2021-06-01,2021-12-01,8,EV,395,repurposed,recycle,"Batterie réutilisable",76,NMC,1300,11,91,185,325,380,430,1180
+BAT-EV-0046,Kia,Gwangmyeong (KR),2022-02-01,2022-08-01,8,EV,400,original,recycle,"Pack opérationnel",85,NCM811,1400,10,92,190,330,385,435,1220
+BAT-EV-0047,Audi,Hungaria (HU),2020-05-01,2020-11-01,8,EV,410,reused,recycle,"Fin de vie véhicule",73,NMC,1350,12,89,195,335,385,435,1200
+BAT-EV-0048,Peugeot,Sochaux (FR),2021-03-01,2021-09-01,7,EV,390,repurposed,recycle,"Batterie reconditionnée",77,NMC,1280,11,90,180,320,370,420,1150
+BAT-EV-0049,Volkswagen,Zwickau (DE),2022-07-01,2023-01-01,8,EV,420,original,recycle,"Pack haute performance",91,NMC,1450,9,95,210,350,400,450,1320
+BAT-EV-0050,Mercedes,Stuttgart (DE),2021-09-01,2022-03-01,8,EV,435,reused,recycle,"Batterie réutilisable",80,NCA,1500,10,94,220,360,410,460,1350
