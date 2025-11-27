@@ -4,7 +4,7 @@ Sur VS Code :
 
 ```
 git clone https://github.com/lisacharuel/Hackaton-Battery-Passport.git
-cd Coding-Agent-Safran
+cd Hackaton-Battery-Passport
 code .
 ```
 
