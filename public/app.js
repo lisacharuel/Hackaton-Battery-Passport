@@ -125,6 +125,75 @@ function updateButtonsState(status) {
     }
 }
 
+// Liste simplifiée de batteries pour l'exemple (tu peux coller tes 50 batteries ici)
+// ------------------------------------------------------------
+// Liste complète des batteries
+// ------------------------------------------------------------
+const batteriesList = [
+  { serialNumber:"BAT-EV-0001" },{ serialNumber:"BAT-EV-0002" },
+  { serialNumber:"BAT-LMT-0003" },{ serialNumber:"BAT-EV-0004" },
+  { serialNumber:"BAT-EV-0005" },{ serialNumber:"BAT-IND-0006" },
+  { serialNumber:"BAT-EV-0007" },{ serialNumber:"BAT-LMT-0008" },
+  { serialNumber:"BAT-EV-0009" },{ serialNumber:"BAT-EV-0010" },
+  { serialNumber:"BAT-EV-0011" },{ serialNumber:"BAT-EV-0012" },
+  { serialNumber:"BAT-LMT-0013" },{ serialNumber:"BAT-EV-0014" },
+  { serialNumber:"BAT-EV-0015" },{ serialNumber:"BAT-IND-0016" },
+  { serialNumber:"BAT-EV-0017" },{ serialNumber:"BAT-LMT-0018" },
+  { serialNumber:"BAT-EV-0019" },{ serialNumber:"BAT-EV-0020" },
+  { serialNumber:"BAT-EV-0021" },{ serialNumber:"BAT-EV-0022" },
+  { serialNumber:"BAT-LMT-0023" },{ serialNumber:"BAT-EV-0024" },
+  { serialNumber:"BAT-EV-0025" },{ serialNumber:"BAT-IND-0026" },
+  { serialNumber:"BAT-EV-0027" },{ serialNumber:"BAT-LMT-0028" },
+  { serialNumber:"BAT-EV-0029" },{ serialNumber:"BAT-EV-0030" },
+  { serialNumber:"BAT-EV-0031" },{ serialNumber:"BAT-EV-0032" },
+  { serialNumber:"BAT-EV-0033" },{ serialNumber:"BAT-EV-0034" },
+  { serialNumber:"BAT-EV-0035" },{ serialNumber:"BAT-EV-0036" },
+  { serialNumber:"BAT-EV-0037" },{ serialNumber:"BAT-EV-0038" },
+  { serialNumber:"BAT-EV-0039" },{ serialNumber:"BAT-EV-0040" },
+  { serialNumber:"BAT-EV-0041" },{ serialNumber:"BAT-EV-0042" },
+  { serialNumber:"BAT-EV-0043" },{ serialNumber:"BAT-EV-0044" },
+  { serialNumber:"BAT-EV-0045" },{ serialNumber:"BAT-EV-0046" },
+  { serialNumber:"BAT-EV-0047" },{ serialNumber:"BAT-EV-0048" },
+  { serialNumber:"BAT-EV-0049" },{ serialNumber:"BAT-EV-0050" }
+];
+
+// ------------------------------------------------------------
+// Remplissage du select au chargement
+// ------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    const batterySelect = document.getElementById('battery-select');
+    batteriesList.forEach(b => {
+        const option = document.createElement('option');
+        option.value = b.serialNumber;
+        option.textContent = b.serialNumber;
+        batterySelect.appendChild(option);
+    });
+
+    disableAllButtons();
+});
+
+// ------------------------------------------------------------
+// Charger la batterie sélectionnée
+// ------------------------------------------------------------
+function loadSelectedBattery() {
+    const batterySelect = document.getElementById('battery-select');
+    const serialNumber = batterySelect.value.trim();
+    if (!serialNumber) {
+        alert("Veuillez sélectionner une batterie !");
+        return;
+    }
+
+    // Mettre à jour le scan-input pour rester compatible
+    const scanInput = document.getElementById('scan-input');
+    scanInput.value = serialNumber;
+
+    // Appel de la fonction existante
+    fetchBatteryData();
+}
+
+
+
+
 let cameraStream = null;
 let qrScanInterval = null;
 
@@ -223,7 +292,6 @@ function startQRCodeDetection() {
         }
     }, 100);
 }
-
 
 
 // ----------------- GARAGISTE -----------------

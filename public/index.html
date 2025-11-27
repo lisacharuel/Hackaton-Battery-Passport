@@ -22,10 +22,30 @@
             </div>
 
             <!-- Mode texte -->
-            <div id="text-input-section" style="display: block;">
+            <!-- <div id="text-input-section" style="display: block;">
                 <input type="text" id="scan-input" placeholder="Entrer serialNumber (ex: BAT-EV-0001)">
                 <button onclick="fetchBatteryData()">Charger</button>
+            </div> -->
+
+            <!-- Mode texte avec dropdown -->
+            <!-- <div id="text-input-section" style="display: block;">
+                <select id="battery-select">
+                    <option value="">-- Sélectionnez une batterie --</option>
+                </select>
+                <button onclick="loadSelectedBattery()">Charger</button>
+            </div>  -->
+
+            
+            <div id="text-input-section" style="display: block;">
+                <select id="battery-select">
+                    <option value="">-- Sélectionnez une batterie --</option>
+                </select>
+                <button onclick="loadSelectedBattery()">Charger</button>
+                <!-- input texte invisible pour rester compatible -->
+                <input type="text" id="scan-input" style="display:none;">
             </div>
+
+
 
             <!-- Mode caméra -->
             <div id="camera-section" style="display: none;">
