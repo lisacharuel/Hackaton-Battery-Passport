@@ -9,3 +9,23 @@ BAT-EV-0007,Volkswagen,Zwickau (DE),2020-02-01,2020-07-01,8,EV,410,repurposed,re
 BAT-LMT-0008,Xiaomi,Shenzhen (CN),2023-01-01,2023-02-01,2,LMT,2.5,original,recycle,"Jeter en point de collecte",0.4,LCO,500,6,94,0.5,33,42,50,120
 BAT-EV-0009,Hyundai,Ulsan (KR),2021-04-01,2021-10-01,8,EV,380,reused,recycle,"Fin de vie vehicule, potentiel 2nd life",64,NCM811,1800,7,93,200,350,400,450,950
 BAT-EV-0010,Mercedes,Stuttgart (DE),2022-09-01,2023-01-01,8,EV,450,original,recycle,"Batterie haute performance",90,NCA,1600,4,96,250,350,400,450,320
+BAT-EV-0011,Tesla,Fremont (US),2021-06-01,2021-12-01,8,EV,430,original,recycle,"Contient lithium",55,NCA,1600,5,95,230,330,400,460,820
+BAT-EV-0012,Renault,Flins (FR),2020-03-01,2020-09-01,8,EV,410,repurposed,recycle,"Ne pas jeter",50,LFP,1400,10,90,200,320,380,440,780
+BAT-LMT-0013,Decathlon,Taiwan,2022-02-01,2022-03-01,2,LMT,3.5,reused,recycle,"Recyclage obligatoire",0.5,NMC,600,12,87,0.6,35,45,55,280
+BAT-EV-0014,BYD,Shenzhen (CN),2023-01-15,2023-06-01,8,EV,370,original,recycle,"Tri specifique batteries HT",58,Blade LFP,3600,4,96,160,310,360,410,125
+BAT-EV-0015,Peugeot,Sochaux (FR),2018-07-01,2018-11-01,7,EV,400,waste,waste,"Danger : pack endommage",52,NMC,1200,30,68,120,270,330,380,1550
+BAT-IND-0016,Siemens,Hambourg (DE),2017-10-01,2018-03-01,10,Industrial,750,remanufactured,recycle,"Materiel lourd",125,LFP,2600,15,92,360,610,670,710,1950
+BAT-EV-0017,Volkswagen,Zwickau (DE),2021-02-01,2021-07-01,8,EV,420,repurposed,recycle,"Batterie reemployable",56,NMC,1250,18,84,170,310,360,405,1120
+BAT-LMT-0018,Xiaomi,Shenzhen (CN),2023-02-01,2023-03-01,2,LMT,2.6,original,recycle,"Jeter en point de collecte",0.42,LCO,520,7,95,0.5,34,43,51,125
+BAT-EV-0019,Hyundai,Ulsan (KR),2021-05-01,2021-11-01,8,EV,390,reused,recycle,"Fin de vie vehicule",65,NCM811,1850,8,94,210,360,410,455,960
+BAT-EV-0020,Mercedes,Stuttgart (DE),2022-08-01,2023-02-01,8,EV,455,original,recycle,"Batterie haute performance",92,NCA,1650,6,97,255,355,410,460,325
+BAT-EV-0021,Tesla,Fremont (US),2021-09-01,2022-03-01,8,EV,440,original,recycle,"Contient lithium et nickel",57,NCA,1700,5,96,240,340,405,465,840
+BAT-EV-0022,Renault,Flins (FR),2020-06-01,2020-12-01,8,EV,415,repurposed,recycle,"Ne pas jeter",51,LFP,1450,11,91,210,325,385,445,790
+BAT-LMT-0023,Decathlon,Taiwan,2022-03-01,2022-04-01,2,LMT,3.3,reused,recycle,"Recyclage obligatoire",0.48,NMC,650,13,88,0.6,36,46,56,285
+BAT-EV-0024,BYD,Shenzhen (CN),2023-03-01,2023-07-01,8,EV,375,original,recycle,"Tri specifique batteries HT",59,Blade LFP,3650,4,97,165,315,365,415,130
+BAT-EV-0025,Peugeot,Sochaux (FR),2019-08-01,2019-12-01,7,EV,395,waste,waste,"Danger : pack endommage",53,NMC,1250,32,69,125,275,335,385,1560
+BAT-IND-0026,Siemens,Hambourg (DE),2018-11-01,2019-04-01,10,Industrial,730,remanufactured,recycle,"Materiel lourd",122,LFP,2550,12,91,355,605,665,705,1920
+BAT-EV-0027,Volkswagen,Zwickau (DE),2021-03-01,2021-08-01,8,EV,425,repurposed,recycle,"Batterie reemployable",57,NMC,1270,19,85,175,315,365,410,1130
+BAT-LMT-0028,Xiaomi,Shenzhen (CN),2023-04-01,2023-05-01,2,LMT,2.55,original,recycle,"Jeter en point de collecte",0.41,LCO,510,8,94,0.5,33,44,52,128
+BAT-EV-0029,Hyundai,Ulsan (KR),2021-06-01,2021-12-01,8,EV,385,reused,recycle,"Fin de vie vehicule",66,NCM811,1900,9,93,215,365,415,460,970
+BAT-EV-0030,Mercedes,Stuttgart (DE),2022-10-01,2023-03-01,8,EV,460,original,recycle,"Batterie haute performance",93,NCA,1700,7,97,260,360,415,465,330
