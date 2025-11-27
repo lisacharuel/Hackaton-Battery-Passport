@@ -1,37 +1,91 @@
-function fetchBatteryData() {
-    const serialNumber = document.getElementById("scan-input").value.trim();
-    if (!serialNumber) {
-        alert("Veuillez entrer un serialNumber !");
-        return;
-    }
+let currentBattery = null;
 
-    fetch(`/api/battery/${serialNumber}/status`)
-        .then(res => res.json())
-        .then(data => {
-            const display = document.getElementById("data-display");
-            if (!data || !data.status) {
-                display.innerHTML = `<p>Aucune donnée trouvée pour ${serialNumber}</p>`;
-                return;
+// Fonction pour afficher les messages d'erreur
+function displayMessage(msg, isError = false) {
+    const display = document.getElementById('data-display');
+    display.innerHTML = `<p style="color: ${isError ? 'red' : 'green'}">${msg}</p>`;
+}
+
+// Fonction qui rend la fiche batterie
+function renderBatteryData(data) {
+    currentBattery = data; // stocker les infos pour actions
+
+    const display = document.getElementById('data-display');
+    const status = data.passport.currentStatus || data.staticInfo.status || 'ORIGINAL';
+    const statusClass = status.toUpperCase() === 'WASTE' ? 'status-waste' : 'status-original';
+
+    // Activation boutons
+    document.getElementById('declare-waste-btn').disabled = status.toUpperCase() !== 'ORIGINAL';
+    document.getElementById('validate-waste-btn').disabled = !(status.toUpperCase() === 'WASTE_REQUESTED');
+    document.getElementById('receive-btn').disabled = status.toUpperCase() !== 'WASTE';
+
+    // Générer événements si non existants
+    const events = data.events && data.events.length ? data.events : [];
+    
+    display.innerHTML = `
+        <h3>Fiche Passeport</h3>
+        <p><strong>N° Série:</strong> ${data.staticInfo.serialNumber}</p>
+        <p><strong>Statut Actuel:</strong> <span class="${statusClass}">${status.toUpperCase()}</span></p>
+        <p><strong>Propriétaire:</strong> ${data.owner?.name || "Inconnu"}</p>
+        <p><strong>Localisation:</strong> ${data.location?.address || "Non renseignée"}</p>
+
+        <h4>Caractéristiques (Statiques)</h4>
+        <ul>
+            <li><strong>Composition:</strong> ${data.staticInfo.composition || "---"}</li>
+            <li><strong>Masse:</strong> ${data.staticInfo.massKg || "---"} kg</li>
+            <li><strong>Capacité Initiale:</strong> ${data.staticInfo.initialCapacitykWh || "---"} kWh</li>
+        </ul>
+
+        <h4>Performance (Dynamiques)</h4>
+        <ul>
+            <li><strong>Santé (SOH):</strong> ${data.performance?.stateOfHealthPercent ?? "---"}%</li>
+            <li><strong>Cycles Complétés:</strong> ${data.performance?.fullCycles ?? "---"}</li>
+        </ul>
+
+        <h4>Suivi des événements</h4>
+        <ul>
+            ${events.length
+                ? events.map(ev => `<li>${ev.ts} - ${ev.desc}</li>`).join('')
+                : '<li>Aucun événement</li>'
             }
+        </ul>
+    `;
+}
 
-            display.innerHTML = `
-                <h4>Fiche Passeport</h4>
-                <p><strong>N° Série:</strong> ${serialNumber}</p>
-                <p><strong>Statut Actuel:</strong> ${data.status}</p>
-                <p><strong>Propriétaire:</strong> ${data.owner || "Inconnu"}</p>
-                <p><strong>Localisation:</strong> ${data.location || "Non renseignée"}</p>
-                <h4>Suivi des événements</h4>
-                <ul>
-                    ${data.events.map(ev => `<li>${ev.ts} - ${ev.desc}</li>`).join('')}
-                </ul>
-            `;
+// ----------------------------------------------------------------------
+// Fetch Batterie
+// ----------------------------------------------------------------------
+async function fetchBatteryData() {
+    const serialNumber = document.getElementById('scan-input').value.trim().toUpperCase();
+    if (!serialNumber) return displayMessage("Veuillez entrer un numéro valide.", true);
 
-            // Activer les boutons
-            document.getElementById("declare-waste-btn").disabled = false;
-            document.getElementById("validate-waste-btn").disabled = false;  // <<< AJOUT ICI
-            document.getElementById("receive-btn").disabled = false;
-        })
-        .catch(err => console.error(err));
+    try {
+        const response = await fetch(`/api/battery/${serialNumber}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            displayMessage(data.error || "Batterie non trouvée.", true);
+            currentBattery = null;
+            return;
+        }
+
+        // Générer événements fallback si nécessaire
+        if (!data.events) {
+            const events = [];
+            if (data.passport?.currentStatus === 'WASTE') {
+                events.push({ ts: data.passport.wasteTimestamp || 'inconnu', desc: 'Garagiste déclare la batterie hors usage' });
+                events.push({ ts: data.passport.validationTimestamp || 'inconnu', desc: 'Propriétaire valide le statut WASTE' });
+                events.push({ ts: data.passport.receiveTimestamp || 'inconnu', desc: 'Centre de tri reçoit la batterie' });
+            }
+            data.events = events;
+        }
+
+        renderBatteryData(data);
+    } catch (err) {
+        console.error(err);
+        displayMessage("Erreur de connexion au serveur.", true);
+        currentBattery = null;
+    }
 }
 
 
