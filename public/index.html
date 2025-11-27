@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battery Passport - Hackathon</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 </head>
 <body>
     <header>
@@ -14,8 +15,29 @@
     <div class="container">
         <div id="battery-info" class="card">
             <h2>Données du Battery Passport</h2>
-            <input type="text" id="scan-input" placeholder="Scanner/Entrer serialNumber (ex: BAT-EV-0001)">
-            <button onclick="fetchBatteryData()">Charger / Scanner</button>
+            
+            <div id="scan-mode-selector">
+                <button onclick="toggleScanMode('text')" id="text-mode-btn" class="mode-btn active">Saisie Manuelle</button>
+                <button onclick="toggleScanMode('camera')" id="camera-mode-btn" class="mode-btn">Scanner QR Code</button>
+            </div>
+
+            <!-- Mode texte -->
+            <div id="text-input-section" style="display: block;">
+                <input type="text" id="scan-input" placeholder="Entrer serialNumber (ex: BAT-EV-0001)">
+                <button onclick="fetchBatteryData()">Charger</button>
+            </div>
+
+            <!-- Mode caméra -->
+            <div id="camera-section" style="display: none;">
+                <div id="camera-container" style="display: none;">
+                    <video id="camera-feed" width="320" height="240" style="border: 2px solid #ccc; display: block; margin: 10px auto;"></video>
+                    <canvas id="qr-canvas" style="display: none;"></canvas>
+                    <p id="qr-status" style="text-align: center; color: #666;">Pointez le QR code vers la caméra...</p>
+                    <button onclick="stopCamera()">Arrêter la caméra</button>
+                </div>
+                <div id="camera-error" style="display: none; color: red; padding: 10px; border: 1px solid red; border-radius: 4px;"></div>
+            </div>
+
             <div id="data-display">
                 <p>Aucune donnée chargée.</p>
             </div>

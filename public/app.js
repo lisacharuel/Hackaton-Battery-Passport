@@ -2,6 +2,104 @@
 
 const API_BASE = '/api';
 let currentBattery = null; // <-- stockera la batterie chargée
+let cameraStream = null;
+let qrScanInterval = null;
+
+// ----------------------------------------------------------------------
+// QR CODE SCANNING
+// ----------------------------------------------------------------------
+
+function toggleScanMode(mode) {
+    const textSection = document.getElementById('text-input-section');
+    const cameraSection = document.getElementById('camera-section');
+    const textModeBtn = document.getElementById('text-mode-btn');
+    const cameraModeBtn = document.getElementById('camera-mode-btn');
+
+    if (mode === 'text') {
+        textSection.style.display = 'block';
+        cameraSection.style.display = 'none';
+        textModeBtn.classList.add('active');
+        cameraModeBtn.classList.remove('active');
+        stopCamera();
+    } else {
+        textSection.style.display = 'none';
+        cameraSection.style.display = 'block';
+        textModeBtn.classList.remove('active');
+        cameraModeBtn.classList.add('active');
+        startCamera();
+    }
+}
+
+async function startCamera() {
+    const cameraContainer = document.getElementById('camera-container');
+    const cameraError = document.getElementById('camera-error');
+    const video = document.getElementById('camera-feed');
+
+    cameraContainer.style.display = 'block';
+    cameraError.style.display = 'none';
+
+    try {
+        cameraStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'environment', width: { ideal: 640 }, height: { ideal: 480 } }
+        });
+        video.srcObject = cameraStream;
+        video.onloadedmetadata = () => {
+            video.play();
+            startQRCodeDetection();
+        };
+    } catch (error) {
+        cameraError.style.display = 'block';
+        cameraError.innerHTML = `Erreur caméra: ${error.message}. Vérifiez les permissions.`;
+        cameraContainer.style.display = 'none';
+    }
+}
+
+function stopCamera() {
+    if (cameraStream) {
+        cameraStream.getTracks().forEach(track => track.stop());
+        cameraStream = null;
+    }
+    if (qrScanInterval) {
+        clearInterval(qrScanInterval);
+        qrScanInterval = null;
+    }
+    document.getElementById('camera-container').style.display = 'none';
+}
+
+function startQRCodeDetection() {
+    const video = document.getElementById('camera-feed');
+    const canvas = document.getElementById('qr-canvas');
+    const ctx = canvas.getContext('2d');
+    const qrStatus = document.getElementById('qr-status');
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    qrScanInterval = setInterval(() => {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        
+        try {
+            const qrCode = jsQR(imageData.data, imageData.width, imageData.height);
+            
+            if (qrCode) {
+                const data = qrCode.data;
+                qrStatus.style.color = '#28a745';
+                qrStatus.innerHTML = `✓ QR Code détecté: <strong>${data}</strong>`;
+                
+                // Auto-fill et fetch
+                document.getElementById('scan-input').value = data;
+                stopCamera();
+                fetchBatteryData();
+            } else {
+                qrStatus.style.color = '#666';
+                qrStatus.innerHTML = 'Pointez le QR code vers la caméra...';
+            }
+        } catch (error) {
+            // Erreur de décodage, continue
+        }
+    }, 100);
+}
 
 // ----------------------------------------------------------------------
 // UI

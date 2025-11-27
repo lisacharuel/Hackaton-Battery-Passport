@@ -34,12 +34,48 @@ header {
     background: #fff;
 }
 
+#scan-mode-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 10px 15px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.mode-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.mode-btn:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+#text-input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
 input[type="text"] {
     padding: 10px;
-    width: 70%;
-    margin-right: 10px;
+    flex: 1;
     border: 1px solid #ccc;
     border-radius: 4px;
+    min-width: 200px;
 }
 
 button {
@@ -59,6 +95,16 @@ button:hover:not(:disabled) {
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+#camera-section button {
+    background-color: #dc3545;
+    display: block;
+    margin: 10px auto;
+}
+
+#camera-section button:hover {
+    background-color: #c82333;
 }
 
 .tabs {
