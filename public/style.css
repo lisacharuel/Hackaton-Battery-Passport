@@ -244,3 +244,49 @@ button:disabled {
 #decision-panel .rec-breakdown ul, #decision-panel .rec-scores ul { margin:6px 0 0 18px; }
 #decision-panel .rec-justification { margin-top:10px; font-style:italic; color:#374151; }
 
+/* --- Styles pour l'affichage visuel des scores --- */
+
+.rec-scores {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #e6eef6;
+}
+
+.score-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+.score-label {
+    width: 120px; /* Largeur fixe pour aligner les labels */
+    font-weight: 600;
+    color: #374151;
+}
+
+.score-bar-container {
+    flex-grow: 1; /* Prend l'espace restant */
+    height: 14px;
+    background-color: #e5e7eb; /* Couleur de fond de la barre */
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.score-bar {
+    height: 100%;
+    background-color: #60a5fa; /* Couleur par défaut (bleu) */
+    transition: width 0.3s ease-out; /* Animation */
+    border-radius: 3px;
+}
+
+.score-bar.best {
+    background-color: #10b981; /* Couleur plus vive pour la meilleure recommandation (vert) */
+}
+
+.score-value {
+    width: 40px; /* Largeur fixe pour aligner les pourcentages */
+    font-weight: 700;
+    text-align: right;
+}

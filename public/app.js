@@ -572,11 +572,30 @@ function openRole(evt, roleName) {
         }
         html += `</ul></div>`;
 
-        html += `<div class="rec-scores"><strong>Scores:</strong><ul>`;
+        // html += `<div class="rec-scores"><strong>Scores:</strong><ul>`;
+        // entries.forEach(([name, val])=>{
+        //     html += `<li>${name}: <strong>${(val*100).toFixed(0)}%</strong></li>`;
+        // });
+        // html += `</ul></div>`;
+        
+
+        html += `<div class="rec-scores"><strong>Scores:</strong>`;
         entries.forEach(([name, val])=>{
-            html += `<li>${name}: <strong>${(val*100).toFixed(0)}%</strong></li>`;
+            const scorePct = (val * 100).toFixed(0);
+            // On ajoute une classe 'best' pour la barre la plus haute
+            const isBest = name === best[0] ? ' best' : ''; 
+            
+            html += `
+                <div class="score-item">
+                    <span class="score-label">${name}</span>
+                    <div class="score-bar-container">
+                        <div class="score-bar${isBest}" style="width: ${scorePct}%;"></div>
+                    </div>
+                    <span class="score-value">${scorePct}%</span>
+                </div>
+            `;
         });
-        html += `</ul></div>`;
+        html += `</div>`;
 
         // justification (top factors favoring the chosen decision)
         const chosen = best[0];
